@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { chirps } from '../chirp-data.model';
+import { chirpData } from '../chirp-data.model';
 import { ChirpDataService } from '../chirp-data.service';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChirpsEditorComponent {
   chirpText: string = '';
-  chirp?: chirps;
+  chirp?: chirpData;
 
   constructor(private chirpDataService: ChirpDataService) {
 
