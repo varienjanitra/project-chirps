@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { chirpData } from '../chirp-data.model';
-import { ChirpDataService } from '../chirp-data.service';
+import { Chirp } from '../chirp-data.model';
+import { ChirpService } from '../chirp-data.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,21 +16,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChirpsEditorComponent {
   chirpText: string = '';
-  chirp?: chirpData;
+  newChirp?: Chirp;
+  maximumChirpLength: number = 140;
 
-  constructor(private chirpDataService: ChirpDataService) {
+  constructor(private ChirpService: ChirpService) {
 
   }
 
   postChirp() {
+    if(this.chirpText.length > this.maximumChirpLength) {
+      alert(`Your chirp length is ${this.chirpText.length}, which is over than allowable length of ${this.maximumChirpLength}`)
+      return;
+    }
+
     let timeNow = new Date();
 
-    this.chirp = {
-      id: this.chirpDataService.getChirpId(),
-      chirpTextData: this.chirpText,
-      chirpPublishDate: timeNow
+    this.newChirp = {
+      id: this.ChirpService.getChirpId(),
+      text: this.chirpText,
+      publishedTime: timeNow
     };
 
-    this.chirpDataService.addChirp(this.chirp);
+    this.ChirpService.addChirp(this.newChirp);
   }
 }

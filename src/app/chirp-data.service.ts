@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import { chirpData } from './chirp-data.model';
+import { Chirp } from './chirp-data.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChirpDataService {
+export class ChirpService {
 
-  chirpsList$: BehaviorSubject<chirpData[]> = new BehaviorSubject<chirpData[]>([])
-  chirpIdStatic: number = 0
+  chirpsList$: BehaviorSubject<Chirp[]> = new BehaviorSubject<Chirp[]>([]);
+  chirpIdStatic: number = 0;
 
   constructor() { }
 
-  addChirp(newChirp: chirpData)
+  addChirp(newChirp: Chirp)
   {
-    let updatedChirpList = structuredClone(this.chirpsList$.value)
-    updatedChirpList.push(newChirp)
-    this.chirpsList$.next(updatedChirpList)
+    let updatedChirpList = structuredClone(this.chirpsList$.value);
+    updatedChirpList.push(newChirp);
+    this.chirpsList$.next(updatedChirpList);
   }
 
   getChirpId() {

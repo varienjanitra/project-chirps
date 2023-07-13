@@ -1,5 +1,5 @@
-export interface chirpData {
+export interface Chirp {
     id: number,
-    chirpTextData: string,
-    chirpPublishDate: Date
+    text: string,
+    publishedTime: Date
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChirpDataService } from '../chirp-data.service';
-import { chirpData } from '../chirp-data.model';
+import { ChirpService } from '../chirp-data.service';
+import { Chirp } from '../chirp-data.model';
 import { Observable, map } from 'rxjs';
 
 @Component({
@@ -13,11 +13,11 @@ import { Observable, map } from 'rxjs';
 })
 export class ChirpsTimelineComponent {
 
-  chirps$: Observable<chirpData[]> = this.chirpService.chirpsList$.pipe(
-    map(chirps => chirps.sort((a, b) => b.chirpPublishDate.getTime() - a.chirpPublishDate.getTime()))
-  )
+  chirps$: Observable<Chirp[]> = this.chirpService.chirpsList$.pipe(
+    map(chirps => chirps.sort((a, b) => b.publishedTime.getTime() - a.publishedTime.getTime()))
+  );
   
-  constructor(private chirpService: ChirpDataService) {
+  constructor(private chirpService: ChirpService) {
     
   }
 }

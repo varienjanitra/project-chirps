@@ -1,5 +1,5 @@
 <div class="chirps-timeline-root" *ngFor="let chirp of chirps$ | async">
     <p class="chirp-id">Chirp ID: {{chirp.id}}</p>
-    <p class="chirp-time">Written on: {{chirp.chirpPublishDate}}</p>
-    <p class="chirp-text">{{chirp.chirpTextData}}</p>
+    <p class="chirp-time">Written on: {{chirp.publishedTime}}</p>
+    <p class="chirp-text">{{chirp.text}}</p>
 </div>

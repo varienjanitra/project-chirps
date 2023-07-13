@@ -1,5 +1,5 @@
 <div class="chirps-editor-root">
-    <p>Write Your Chirps Here:</p>
+    <p>Write Your Chirps Here: {{chirpText.length}} of {{maximumChirpLength}}</p>
     <div class="chirps-editor-input-space">
         <textarea [(ngModel)]="chirpText"></textarea>
         <button (click)="postChirp()">Post Chirp</button>
