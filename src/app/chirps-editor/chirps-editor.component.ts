@@ -15,25 +15,25 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./chirps-editor.component.scss']
 })
 export class ChirpsEditorComponent {
-  chirpText: string = '';
+  bodyText: string = '';
+  maxBodyTextLength: number = 140;
   newChirp?: Chirp;
-  maximumChirpLength: number = 140;
 
   constructor(private ChirpService: ChirpService) {
 
   }
 
   postChirp() {
-    if(this.chirpText.length > this.maximumChirpLength) {
-      alert(`Your chirp length is ${this.chirpText.length}, which is over than allowable length of ${this.maximumChirpLength}`)
+    if(this.bodyText.length > this.maxBodyTextLength) {
+      alert(`Your chirp length is ${this.bodyText.length}, which is over than allowable length of ${this.maxBodyTextLength}`)
       return;
     }
 
     let timeNow = new Date();
 
     this.newChirp = {
-      id: this.ChirpService.getChirpId(),
-      text: this.chirpText,
+      uuid: this.ChirpService.getChirpUuid(),
+      bodyText: this.bodyText,
       publishedTime: timeNow
     };
 

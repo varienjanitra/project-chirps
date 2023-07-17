@@ -7,20 +7,20 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ChirpService {
 
-  chirpsList$: BehaviorSubject<Chirp[]> = new BehaviorSubject<Chirp[]>([]);
-  chirpIdStatic: number = 0;
+  public chirpTimeline$: BehaviorSubject<Chirp[]> = new BehaviorSubject<Chirp[]>([]);
+  nextChirpUuid : number = 0;
 
   constructor() { }
 
   addChirp(newChirp: Chirp)
   {
-    let updatedChirpList = structuredClone(this.chirpsList$.value);
-    updatedChirpList.push(newChirp);
-    this.chirpsList$.next(updatedChirpList);
+    let updatedChirpTimeline = structuredClone(this.chirpTimeline$.value);
+    updatedChirpTimeline.push(newChirp);
+    this.chirpTimeline$.next(updatedChirpTimeline);
   }
 
-  getChirpId() {
-    ++this.chirpIdStatic;
-    return this.chirpIdStatic;
+  getChirpUuid() {
+    this.nextChirpUuid += 1;
+    return this.nextChirpUuid;
   }
 }
