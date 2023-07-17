@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChirpService } from '../chirp-data.service';
 import { Chirp } from '../chirp-data.model';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-chirps-timeline',
@@ -13,9 +13,13 @@ import { Observable, map } from 'rxjs';
 })
 export class ChirpsTimelineComponent {
 
-  chirps$: Observable<Chirp[]> = this.chirpService.chirpTimeline$.pipe(
-    map(chirps => chirps.sort((current, next) => next.id - current.id))
-  );
+  chirps$: Observable<Chirp[]>;
  
-  constructor(private chirpService: ChirpService) {  }
+  constructor(private chirpService: ChirpService) { 
+    this.chirps$ = this.chirpService.refreshChirps$
+      .pipe(
+        switchMap(() => this.chirpService.getChirps()),
+        map(chirps => chirps.sort((current, next) => next.id - current.id))
+      );
+   }
 }
