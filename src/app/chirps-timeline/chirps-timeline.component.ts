@@ -14,10 +14,8 @@ import { Observable, map } from 'rxjs';
 export class ChirpsTimelineComponent {
 
   chirps$: Observable<Chirp[]> = this.chirpService.chirpTimeline$.pipe(
-    map(chirps => chirps.sort((current, next) => next.publishedTime.getTime() - current.publishedTime.getTime()))
+    map(chirps => chirps.sort((current, next) => next.id - current.id))
   );
-  
-  constructor(private chirpService: ChirpService) {
-    
-  }
+ 
+  constructor(private chirpService: ChirpService) {  }
 }

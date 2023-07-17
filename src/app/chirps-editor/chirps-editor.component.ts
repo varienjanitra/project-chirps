@@ -32,7 +32,7 @@ export class ChirpsEditorComponent {
     let timeNow = new Date();
 
     this.newChirp = {
-      uuid: this.ChirpService.getChirpUuid(),
+      id: this.ChirpService.getChirpId(),
       bodyText: this.bodyText,
       publishedTime: timeNow
     };

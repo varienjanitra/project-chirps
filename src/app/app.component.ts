@@ -9,7 +9,7 @@ import { ChirpsTimelineComponent } from './chirps-timeline/chirps-timeline.compo
   imports: [
     CommonModule,
     ChirpsEditorComponent,
-    ChirpsTimelineComponent
+    ChirpsTimelineComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

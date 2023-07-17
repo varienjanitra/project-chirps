@@ -1,5 +1,5 @@
 export interface Chirp {
-    uuid: number,
+    id: number,
     bodyText: string,
     publishedTime: Date
 }
