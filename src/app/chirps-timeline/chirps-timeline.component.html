@@ -1,5 +1,10 @@
 <div class="chirps-timeline-root" *ngFor="let chirp of (chirps$ | async)">
-    <p class="chirp-id">Chirp ID: {{chirp.id}}</p>
-    <p class="chirp-time">Written on: {{chirp.publishedTime}}</p>
-    <p class="chirp-text">{{chirp.bodyText}}</p>
+    <div class="chirps-box">
+        <p class="chirp-id">Chirp ID: {{chirp.id}}</p>
+        <p class="chirp-time">Written on: {{chirp.publishedTime}}</p>
+        <p class="chirp-text">{{chirp.bodyText}}</p>
+    </div>
+    <div class="chirps-box-menu">
+        <button (click)="deleteChirp(chirp.id)">Delete</button>
+    </div>
 </div>

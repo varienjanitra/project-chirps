@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Chirp } from './chirp-data.model';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,15 @@ export class ChirpService {
       .pipe(
         tap(retrievedChirps => {
           this.nextChirpid = retrievedChirps[retrievedChirps.length - 1].id;
-        })
+        }),
+        map(chirps => chirps.sort((current, next) => next.id - current.id))
+      )
+  }
+
+  deleteChirp(chirpId: number): Observable<number> {
+    return this.http.delete<number>(this.backendUrl + '/deletechirp/' + chirpId)
+      .pipe(
+        tap(() => this.refetchChirps$.next(null))
       )
   }
 }

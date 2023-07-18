@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChirpService } from '../chirp-data.service';
 import { Chirp } from '../chirp-data.model';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, Subscription, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-chirps-timeline',
@@ -14,12 +14,24 @@ import { Observable, map, switchMap } from 'rxjs';
 export class ChirpsTimelineComponent {
 
   chirps$: Observable<Chirp[]>;
+  deleteChirp$: Subscription = new Subscription();
  
   constructor(private chirpService: ChirpService) { 
     this.chirps$ = this.chirpService.refreshChirps$
       .pipe(
         switchMap(() => this.chirpService.getChirps()),
-        map(chirps => chirps.sort((current, next) => next.id - current.id))
       );
+   }
+
+   deleteChirp(chirpId: number) {
+    this.deleteChirp$ = this.chirpService.deleteChirp(chirpId).subscribe();
+    this.chirps$ = this.chirpService.refreshChirps$
+      .pipe(
+        switchMap(() => this.chirpService.getChirps()),
+      );
+   }
+
+   ngOnDestroy() {
+    this.deleteChirp$.unsubscribe();
    }
 }
