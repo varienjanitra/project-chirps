@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Chirp } from './chirp-data.model';
-import { BehaviorSubject, Observable, tap, map } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map, startWith, of, switchMap, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,13 @@ export class ChirpService {
   {
     return this.http.post<Chirp>(this.backendUrl + '/postchirp', newChirp)
       .pipe(
+        tap(() => this.refetchChirps$.next(null)),
+      )
+  }
+
+  deleteChirp(chirpId: number): Observable<number> {
+    return this.http.delete<number>(this.backendUrl + '/deletechirp/' + chirpId)
+      .pipe(
         tap(() => this.refetchChirps$.next(null))
       )
   }
@@ -36,17 +43,19 @@ export class ChirpService {
   getChirps(): Observable<Chirp[]> {
     return this.http.get<Chirp[]>(this.backendUrl + '/getchirps')
       .pipe(
-        tap(retrievedChirps => {
-          this.nextChirpid = retrievedChirps[retrievedChirps.length - 1].id;
+        tap((retrievedChirps: Chirp[]) => {
+          if(retrievedChirps.length == 0) {
+            this.nextChirpid = 0
+          } else {
+            this.nextChirpid = retrievedChirps[retrievedChirps.length - 1].id;
+          }
         }),
-        map(chirps => chirps.sort((current, next) => next.id - current.id))
-      )
-  }
-
-  deleteChirp(chirpId: number): Observable<number> {
-    return this.http.delete<number>(this.backendUrl + '/deletechirp/' + chirpId)
-      .pipe(
-        tap(() => this.refetchChirps$.next(null))
+        map((chirps: Chirp[]) => chirps.sort((currentElement, nextElement) => { 
+          return nextElement.id - currentElement.id
+        })),
+        catchError(() => {
+          return of([]);
+        })
       )
   }
 }

@@ -17,6 +17,7 @@ export class ChirpsTimelineComponent {
   deleteChirp$: Subscription = new Subscription();
    
   constructor(private chirpService: ChirpService) { 
+    console.log('chirp timeline instantiated')
     this.chirps$ = this.chirpService.refreshChirps$
       .pipe(
         switchMap(() => this.chirpService.getChirps()),
@@ -24,11 +25,8 @@ export class ChirpsTimelineComponent {
    }
 
    deleteChirp(chirpId: number) {
-    this.deleteChirp$ = this.chirpService.deleteChirp(chirpId).subscribe();
-    this.chirps$ = this.chirpService.refreshChirps$
-      .pipe(
-        switchMap(() => this.chirpService.getChirps()),
-      );
+    this.deleteChirp$ = this.chirpService.deleteChirp(chirpId)
+      .subscribe();
    }
 
    ngOnDestroy() {
