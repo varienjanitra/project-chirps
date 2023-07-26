@@ -1,5 +1,5 @@
 export interface Chirp {
-    id: number,
-    bodyText: string,
-    publishedTime: Date
+  id: number,
+  bodyText: string,
+  publishedTime: Date
 }

@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, tap, map, startWith, of, switchMap, catchE
 })
 export class ChirpService {
   private backendUrl: string = 'http://localhost:5280';
-  
+
   private nextChirpid: number = 0;
   private refetchChirps$: BehaviorSubject<any> = new BehaviorSubject(null);
 
@@ -48,9 +48,10 @@ export class ChirpService {
             this.nextChirpid = 0
           } else {
             this.nextChirpid = retrievedChirps[retrievedChirps.length - 1].id;
+            console.log(this.nextChirpid);
           }
         }),
-        map((chirps: Chirp[]) => chirps.sort((currentElement, nextElement) => { 
+        map((chirps: Chirp[]) => chirps.sort((currentElement, nextElement) => {
           return nextElement.id - currentElement.id
         })),
         catchError(() => {

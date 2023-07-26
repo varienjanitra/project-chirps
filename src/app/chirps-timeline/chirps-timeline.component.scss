@@ -1,41 +1,41 @@
 .chirps-timeline-root {
-    display: grid;
-    grid-template-columns: 9fr 1fr;
-    margin: 0.25rem 1rem;
-    padding: 1rem;
-    
-    color: #393E46;
-    background-color: #00ADB5;
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  margin: 0.25rem 1rem;
+  padding: 1rem;
+
+  color: #393E46;
+  background-color: #00ADB5;
 }
 
 p.chirp-time, p.chirp-id {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .chirps-box-menu {
-    margin: 0px;
-    padding: 0px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-    margin: 0px;
-    padding: 0.25rem;
-    width: 5rem;
-    border: 0px;
-    border-radius: 5px;
-    font-weight: bold;
-    
-    background-color: grey;
+  margin: 0px;
+  padding: 0.25rem;
+  width: 5rem;
+  border: 0px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  background-color: grey;
 }
 
 button:hover {
-    cursor: pointer;
-    background-color: cyan;
+  cursor: pointer;
+  background-color: cyan;
 }
 
 button:active {
-    background-color: #EEEEEE;
+  background-color: #EEEEEE;
 }
