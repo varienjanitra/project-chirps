@@ -17,13 +17,13 @@ import { Observable, Subscription, switchMap } from 'rxjs';
 })
 export class ChirpsEditorComponent {
   bodyText: string = '';
-  maxBodyTextLength: number = 140;
+  maxBodyTextLength: number;
   newChirp?: Chirp;
 
   private addChirp: Subscription = new Subscription();
 
-  constructor(private ChirpService: ChirpService) { 
-    
+  constructor(private ChirpService: ChirpService) {
+    this.maxBodyTextLength = ChirpService.maxChirpBodyTextLength;
   }
 
   postChirp() {
@@ -32,15 +32,7 @@ export class ChirpsEditorComponent {
       return;
     }
 
-    let timeNow = new Date();
-
-    this.newChirp = {
-      id: this.ChirpService.getChirpId(),
-      bodyText: this.bodyText,
-      publishedTime: timeNow
-    };
-
-    this.addChirp = this.ChirpService.addChirp(this.newChirp)
+    this.addChirp = this.ChirpService.addChirp({bodyText: this.bodyText})
       .subscribe();
   }
 
