@@ -1,45 +1,45 @@
 .chirps-editor-root {
-    margin: 0.25rem 1rem;
-    padding: 1rem;
-    
-    color: #393E46;
-    background-color: #00ADB5;
+  margin: 0.25rem 1rem;
+  padding: 1rem;
+
+  color: #393E46;
+  background-color: #00ADB5;
 }
 
 .chirps-editor-input-space {
-    display: grid;
-    margin: 0.5rem 0.5rem 0rem 0rem;
-    align-items: center;
-    grid-template-columns: 5fr 1fr;
+  display: grid;
+  margin: 0.5rem 0.5rem 0rem 0rem;
+  align-items: center;
+  grid-template-columns: 5fr 1fr;
 }
 
 textarea {
-    border: 0px;
-    border-radius: 5px;
-    margin: 0rem 0.5rem 0rem 0rem;
-    padding: 1rem;
-    background-color: #EEEEEE;
-    height: 5rem;
-    resize: none;
-    font-family: Arial, Helvetica, sans-serif;
+  border: 0px;
+  border-radius: 5px;
+  margin: 0rem 0.5rem 0rem 0rem;
+  padding: 1rem;
+  background-color: #EEEEEE;
+  height: 5rem;
+  resize: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
-    margin: 0px;
-    padding: 0px;
-    height: 7rem;
-    border: 0px;
-    border-radius: 5px;
-    font-weight: bold;
-    
-    background-color: grey;
+  margin: 0px;
+  padding: 0px;
+  height: 7rem;
+  border: 0px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  background-color: grey;
 }
 
 button:hover {
-    cursor: pointer;
-    background-color: cyan;
+  cursor: pointer;
+  background-color: cyan;
 }
 
 button:active {
-    background-color: #EEEEEE;
+  background-color: #EEEEEE;
 }
