@@ -15,9 +15,8 @@ export class ChirpsTimelineComponent {
 
   chirps$: Observable<Chirp[]>;
   deleteChirp$: Subscription = new Subscription();
-   
-  constructor(private chirpService: ChirpService) { 
-    console.log('chirp timeline instantiated')
+
+  constructor(private chirpService: ChirpService) {
     this.chirps$ = this.chirpService.refreshChirps$
       .pipe(
         switchMap(() => this.chirpService.getChirps()),

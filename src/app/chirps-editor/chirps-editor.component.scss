@@ -1,6 +1,6 @@
 .chirps-editor-root {
   margin: 0.25rem 1rem;
-  padding: 1rem;
+  padding: 0.5em;
 
   color: #393E46;
   background-color: #00ADB5;
@@ -8,9 +8,11 @@
 
 .chirps-editor-input-space {
   display: grid;
-  margin: 0.5rem 0.5rem 0rem 0rem;
+  margin: 0.1em 0.1em 0rem 0rem;
   align-items: center;
-  grid-template-columns: 5fr 1fr;
+  justify-content: center;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 5em;
 }
 
 textarea {
@@ -32,12 +34,16 @@ button {
   border-radius: 5px;
   font-weight: bold;
 
+  transition: background-color 0.25s, color 0.25s;
+
   background-color: grey;
 }
 
 button:hover {
   cursor: pointer;
   background-color: cyan;
+
+  color: blue;
 }
 
 button:active {

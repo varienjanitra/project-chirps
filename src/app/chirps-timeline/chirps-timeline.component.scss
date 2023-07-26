@@ -6,6 +6,8 @@
 
   color: #393E46;
   background-color: #00ADB5;
+
+  transition: background-color 0.25s;
 }
 
 p.chirp-time, p.chirp-id {
@@ -28,14 +30,23 @@ button {
   border-radius: 5px;
   font-weight: bold;
 
+  transition: background-color 0.25s, color 0.25s;
+
   background-color: grey;
 }
 
 button:hover {
   cursor: pointer;
   background-color: cyan;
+  color: red;
 }
 
 button:active {
   background-color: #EEEEEE;
+}
+
+.chirps-timeline-root:hover {
+  border: 5px cyan solid;
+  border-radius: 5px;
+  background-color: #00B6CC;
 }

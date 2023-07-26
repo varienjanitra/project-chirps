@@ -11,8 +11,12 @@
 }
 
 .app-header {
+  position: sticky;
+  top: 0px;
+
   margin: 0.5rem 1rem 0.25rem;
-  padding: 1rem;
+  border: 0.25em blueviolet solid;
+  padding: 0.1em;
 
   text-align: center;
   color: #393E46;
